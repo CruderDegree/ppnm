@@ -1,0 +1,6 @@
+set title "Error function"
+set term svg background rgb "white"
+set out "Error.svg"
+plot [-3:3][-1:1] \
+"out.error.txt" with lines title "erf(x)" \
+, "error.tab.txt" with points pt 7 title "Tabulated values"
