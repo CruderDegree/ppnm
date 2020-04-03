@@ -1,0 +1,14 @@
+Max int
+Found max value: 2147483647
+Actual max value: 2147483647
+
+Min int
+Found min value: -2147483648
+Actual min value: -2147483648
+
+Machine epsilon
+Found double machine epsilon: 2.22044604925031E-16
+Actual double machine epsilon: 2.22044604925031E-16
+
+Found float machine epsilon: 1.192093E-07
+Actual float machine epsilon: 1.19209289550781E-07

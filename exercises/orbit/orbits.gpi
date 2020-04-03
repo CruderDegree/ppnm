@@ -1,0 +1,6 @@
+set term svg background rgb "white"
+set out "Orbits.svg"
+
+plot "out.circle.txt" using (1/$2)*cos($1):(1/$2)*sin($1) with lines title "Circular orbit", \
+"out.ellipse.txt" using (1/$2)*cos($1):(1/$2)*sin($1) with lines title "Ellipsoid orbit", \
+"out.genrel.txt" using (1/$2)*cos($1):(1/$2)*sin($1) with lines title "Gen Rel orbit"

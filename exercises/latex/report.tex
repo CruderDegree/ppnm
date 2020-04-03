@@ -1,0 +1,44 @@
+\documentclass[twocolumn, a4paper]{article}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+\title{The natural logarithm function}
+\author{Tobias Rasmussen}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+The natural logarithm of a number is its logarithm to the base of Euler's number $e \approx 2.718281828459$. The natural logarithm is usually referred to as either $\ln(x)$ or $\log_e(x)$.
+
+The natural logarithm maps multiplication into addition as all other logarithms do:
+\begin{equation}
+	\ln xy = \ln x + \ln y
+\end{equation}
+
+\section{Definition}
+The natural logarithm function can be defined for some $x\in \mathbb{R}_{>0}$ by the integral
+\begin{equation}
+	\ln(x) = \int_1^x \frac{1}{t} dt
+\end{equation}
+
+If $x<1$, this integral is negative.
+
+\begin{figure}
+	\input{plot.tex}
+	\caption{Graph of the natural logarithm function along with some tabulated values.}
+	\label{fig:plot}
+\end{figure}
+
+\section{Properties}
+The natural logarithm satisfies the following properties, among others:
+\begin{align}
+	&\ln 1 = 0 \\
+	&\ln e = 1 \\
+	&\ln(xy) = \ln x + \ln y, \quad x,y > 0 \\
+	&\lim_{x\rightarrow 0} \frac{\ln(1+x}{x} = 1
+\end{align}
+
+\end{document}

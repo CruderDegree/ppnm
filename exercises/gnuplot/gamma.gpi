@@ -1,0 +1,6 @@
+set title "Gamma-function computed and tabulated"
+set term svg background rgb "white"
+set out "Gamma.svg"
+set key bottom right
+plot[-5:5][-5:5] "out.gamma.txt" with lines title "gamma(x)" ,\
+"gamma.tab.txt" with points pt 6 title "table values"

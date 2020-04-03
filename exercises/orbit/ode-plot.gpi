@@ -1,0 +1,4 @@
+set term svg background rgb "white"
+set out "Plot.svg"
+plot [0:3][] "ode.out.txt" with points notitle, \
+	"ode.table.txt" with lines title "Std. Logistical function"

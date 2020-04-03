@@ -1,0 +1,36 @@
+1: What is the mcs option to turn off all warnings?
+	mcs -warn:0 to set warning level to 0, where default is 4   
+
+2: What is the mcs option to turn off informational warnings?
+    
+
+3: Rewrite this piece of code, x=(a>b?a:b), using the if statement.
+	if (a>b){x=a;}
+	else {x=b;}
+4: If you need mathematical functions from, say, cmath.dll library, how do you link your program with the library?
+	using static cmath;	
+    
+5: What will the following piece of code print?
+
+    int i=0;
+    Write("{0}\n",i);
+    Write("{0}\n",i++);
+    Write("{0}\n",++i);
+
+    Explain.
+	
+	First line prints 0
+	Second prints 0, since i++ shows the value of i before addition
+	Third prints 2, since ++i shows the value of i after addition
+
+6: Rewrite the loop while(condition)body using the for loop.
+	for(int i=0; i(condition), i++)	
+
+7: Rewrite the loop for(init;cond;inc)body using the while loop.
+	while(init ? condition)
+	body	
+	inc
+
+8: Rewrite the loop do body while(condition); using the for loop.
+	
+ 
