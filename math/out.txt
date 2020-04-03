@@ -1,6 +1,0 @@
-EEEEEEEEEEE = 2.71828182845905
-sqrt(2) = 1.4142135623731
-e to the power i = 0.54+0.841i
-e to the power pi i = -1+1.22e-16i
-i to the power i = 0.208+0i
-sin(i*pi) = 0+11.5i

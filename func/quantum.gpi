@@ -1,5 +1,0 @@
-set title "E[a]"
-set term svg background rgb "white"
-set out "Quantum.svg"
-set arrow from 0,0.5 to 3,0.5 nohead
-plot [0:3][0:3] "out.quantum.txt" with points pt 7 notitle

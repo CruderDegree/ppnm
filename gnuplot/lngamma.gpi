@@ -1,6 +1,0 @@
-set title "LN-Gamma-function computed and tabulated"
-set term svg background rgb "white"
-set out "LnGamma.svg"
-set key bottom right
-plot[0:6][] "out.lngamma.txt" with lines title "Log[gamma(x)]" ,\
-"lngamma.tab.txt" with points pt 6 title "table values"
