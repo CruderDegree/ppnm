@@ -1,0 +1,10 @@
+set term svg background rgb "white"
+set out "LinSplinePlot2.svg"
+set title "Linear Interpolation of f(x)=x"
+set key bottom right
+set xlabel "x"
+set ylabel "f(x)"
+plot[1:5][] x**2 t "f(x) = x^2" ,\
+"data-lin-2.txt" with point pt 7 ps 0.5 title "Interpolated points" ,\
+"data-lin-2.txt" u 1:3 with point pt 7 ps 0.5 title "Interpolated integral" ,\
+"tab-lin-2.txt" u 1:2 with point pt 2 title "Tabulated Integral values"
