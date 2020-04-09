@@ -55,6 +55,15 @@ class main{
 		vector b_test = A * x;
 		b_test.print("Test that Ax = b");
 		
+		WriteLine("");
+		WriteLine("Part 3: Inverting Matrices");
+		WriteLine("");
+		WriteLine("Re-using random square matrices from Part 2...");
+		WriteLine("Calculating A**-1 = B...");
+		matrix B = qr_gs_inverse(Q, R);
+		B.print("B: ");
+		matrix I = A*B;
+		I.print("Test A*B = I: ");
 		return 0;
 	}
 
@@ -90,5 +99,16 @@ class main{
 			x[i] = 1/U[i,i] * (c[i] - s);
 		}
 		return x;
+	}
+
+	static matrix qr_gs_inverse(matrix Q, matrix R){
+		matrix B = new matrix(R.size1, R.size1);
+		vector e = new vector(B.size1);
+		for(int i = 0; i < e.size; i++){ 
+			e[i] = 1;
+			B[i] = qr_gs_solve(Q,R,e);
+			e[i] = 0;
+		}
+		return B;
 	}
 }	
