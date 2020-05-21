@@ -1,7 +1,8 @@
 LIN=LinSplinePlot1.svg LinSplinePlot2.svg LinSplinePlot3.svg
 QUAD= QuadSplinePlot1.svg QuadSplinePlot2.svg QuadSplinePlot3.svg
+CUB= CubSplinePlot.svg 
 
-all: $(LIN) $(QUAD)
+all: $(LIN) $(QUAD) $(CUB)
 
 $(LIN): linSpline1.gpi linSpline2.gpi linSpline3.gpi
 	gnuplot $^
@@ -111,6 +112,29 @@ data-quad-2.txt: main.exe
 
 data-quad-3.txt: main.exe
 	mono $< quad 3 > $@ 2> error-quad-3.txt
+
+CubSplinePlot.svg: plot-cub.gpi
+	gnuplot $<
+
+plot-cub.gpi: data-cub.txt tab-cub.txt Makefile
+	cat /dev/null > $@
+	echo 'set term svg background rgb "white"' >> $@
+	echo 'set out "CubSplinePlot.svg"' >> $@
+	echo 'set title "Cubic Spline"' >> $@
+	echo 'set key top right' >> $@
+	echo 'set xlabel "x"' >> $@
+	echo 'set ylabel "y"' >> $@
+	echo 'plot "$<" with point pt 7 ps 0.5 title "Interpolated points" ,\
+	"tab-cub.txt" with point pt 2 ps 1 title "Tabulated points" ,\
+	"" smooth csplines t "Spline utility" ,\
+	"$<" u 1:3 with point pt 7 ps 0.5 title "Interpolated derivative" ,\
+	"$<" u 1:4 with point pt 7 ps 0.5 title "Interpolated integral"' >> $@
+
+data-cub.txt: cubicSpline.exe tab-cub.txt
+	mono $< < tab-cub.txt > $@
+
+cubicSpline.exe: cubicSpline.cs
+	mcs $<
 
 clean:
 	rm -f *.dll *.exe *.svg data-*.txt error-*.txt *.gpi
