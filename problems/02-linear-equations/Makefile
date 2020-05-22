@@ -6,7 +6,7 @@ Answer.txt: main.exe
 main.exe: main.cs matrixlib.dll
 	mcs $< -reference:matrixlib.dll
 
-matrixlib.dll: matrix.cs vector.cs
+matrixlib.dll: lib/matrix.cs lib/vector.cs
 	mcs $^ -target:library -out:$@
 
 clean:
