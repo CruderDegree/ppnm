@@ -1,0 +1,25 @@
+int 0 to 1 of log(x)/sqrt(x) calculation and tabulated value
+Calc:   -3.99976
+Tabl:   -4.00000
+int from -inf to +inf of exp(-x**2): calculation and tabulated value
+Calc:    1.77245
+Tabl:    1.77245
+int from 0 to 1 of ln(1/x)**2: calculation and tabulated value
+Calc:    2.00000
+Tabl:    2.00000
+int from 0 to 1 of ln(1/x)**4: calculation and tabulated value
+Calc:   24.00022
+Tabl:   24.00000
+int from 0 to 1 of ln(1/x)**8: calculation and tabulated value
+Calc: 40352.17028
+Tabl: 40320.00000
+Definite Integrals
+int from 0 to +inf of sqrt(x)*exp(-x): calculation and tabulated value
+Calc:    0.88623
+Tabl:    0.88623
+int from 0 to +inf of x/(e**x - 1): calculation and tabulated value
+Calc:    1.64493
+Tabl:    1.64493
+int from 0 to +inf of sinc(x): calculation and tabulated value
+Calc:    1.32213
+Tabl:    1.57080

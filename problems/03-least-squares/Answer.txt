@@ -1,0 +1,10 @@
+Fit result parameters:       4.94     -0.167 
+This means that a: 140.290339946444 and lambda: 0.166874291347383
+This gives a half life of 4.1537086088175 days
+The half life of Ra224 is actually around 3.6319 days
+
+The Covariance matrix is estimated to
+  1.57e-07  -3.51e-08 
+ -3.51e-08   1.28e-08 
+This give the following errors of the parameters  0.000396   0.000113 
+Thus, the half of ThX is estimated to be between 4.1537086088175 +- 0.00281162488736301 days

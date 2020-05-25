@@ -1,0 +1,11 @@
+set term svg background rgb "white"
+set out "Plot.svg"
+set title "Least squares fit plot"
+set xlabel "Time in days"
+set ylabel "Percent Activity"
+set key box
+set key top right
+plot 	"data/input.txt" using 1:2:(0.05*$2) with yerrorbars pt 1 title "Data with unc." ,\
+	"data/output.txt" using 1:2 with lines title "Best fit" ,\
+	"" using 1:3 with lines title "Upper fit estimate" ,\
+	"" using 1:4 with lines title "Lower fit estimate"
