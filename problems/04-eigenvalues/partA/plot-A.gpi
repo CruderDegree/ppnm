@@ -1,0 +1,3 @@
+set term svg background rgb "white"
+set out "Plot-A.svg"
+plot "data-A.txt" using 1:2 with points pt 2
