@@ -6,7 +6,7 @@ Plot-A.svg: plot-A.gpi data-A.txt
 	gnuplot $<
 
 data-A.txt Answer-A.txt: main-A.exe lib-A.dll
-	mono $< 2> data-A.txt 1> Answer-A.txt
+	mono $< > Answer-A.txt
 
 main-A.exe: main-A.cs lib-A.dll
 	mcs $< -reference:lib-A.dll -out:$@

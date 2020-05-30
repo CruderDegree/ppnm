@@ -35,8 +35,7 @@ class main{
 		// Calculate numerically Quantum particle in a box
 		WriteLine("--- Calculate numerically QM particle in a box");
 		// Generate H
-		int N = 20; // Number of time units
-		double s = 1.0/(N+1);
+		int N = 32; // Number of numerical steps
 		matrix H = new matrix(N,N);
 		for(int i = 0; i< N-1; i++){
 			H[i,i] = -2;
@@ -44,19 +43,19 @@ class main{
 			H[i+1, i] = 1;
 		}
 		H[N-1, N-1] = -2;
-		H = H * -1 / s / s;
+		H = -(N+1) * (N+1) * H;
 
 		// Diagonalize H using jacobi
-		V = new matrix(N,N);
-		eigvec = new vector(N);
-		int hSweeps = Jacobi.cyclic(H, V, eigvec);
+		matrix boxV = new matrix(N,N);
+		vector boxE = new vector(N);
+		int hSweeps = Jacobi.cyclic(H, boxV, boxE);
 		
 		// Test that 
 		WriteLine("Calculation done: Checking that energies are correct");
 		WriteLine("E_n \t Calculation \t Exact");
 		for(int k = 0; k < N/3; k++){
 			double exact = PI*PI*(k+1)*(k+1);
-			double calc = eigvec[k];
+			double calc = boxE[k];
 			WriteLine($"E_{k} \t  {calc.ToString("N5")} \t {exact.ToString("N5")}");
 		}
 
@@ -64,13 +63,14 @@ class main{
 		// Generate plotting data to plot with
 		using (StreamWriter sw = new StreamWriter("data-A.txt")){
 			// Plot the first 3 wave funcs 
-			// Format: x, 
+			// Format: x \t psi0 \t psi_n ...
+			sw.WriteLine($"0 \t 0 \t 0 \t 0 \t 0 \t 0");
+			for(int i = 0; i < N; i++){
+				sw.Write($"{(i + 1)*1.0/N} ");
+				for(int k = 0; k < 5; k++) sw.Write($"\t {boxV[i,k]} ");
+				sw.Write("\n");
+			}
 		}
-		
-		TextWriter DataWriter = Error;
-		//DataWriter.WriteLine("This is in the data stream");
-		for(double x = 0; x < 16; x+=1.0/16) DataWriter.WriteLine($"{x} {2*x}");
-		
 		return 0;
 	}
 
