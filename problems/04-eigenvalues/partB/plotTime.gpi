@@ -1,0 +1,17 @@
+set term svg background rgb "white"
+set out "Plot-B.svg"
+set title "Time elapsed calculating eigenvalues of random matrix of size n"
+set xlabel "n"
+set ylabel "Time in ms"
+set logscale y 10
+set key bottom right
+a = 0.00005
+b = 0.00002
+f(x) = a*x*x*x
+g(x) = b*x*x
+plot 	"data-time.txt" using 1:2 with points ps 2 pt 2 title "Cyclic Jacobi" ,\
+	"" using 1:3 with points ps 2 pt 2 title "Value-by-Value full" ,\
+	"" using 1:4 with points ps 2 pt 2 title "VbV, only lowest" ,\
+	"" using 1:5 with points ps 2 pt 2 title "VbV, only highest" ,\
+	f(x) with lines linestyle 2 title "5*10**-5 * n**3" ,\
+	g(x) with lines linestyle 3 title "2*10**-5 * n**2"
