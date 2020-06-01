@@ -1,0 +1,20 @@
+set term svg background rgb "white"
+set out "Plot-C.svg"
+set multiplot layout 1,2 title "Comparison of Classical and Cyclic Jacobi algorithm" font ",14"
+set key bottom right
+#
+set title "Rotations"
+set xlabel "Size of square matrix"
+set ylabel "Number of rotations performed"
+set logscale y 10
+plot 	"data-C.txt" using 1:2 with points ps 1 pt 2 title "Cyclic" ,\
+	"" using 1:4 with points ps 1 pt 2 title "Classical"
+#
+set title "Time"
+set xlabel "Size of square matrix"
+set ylabel "Time in ms"
+set logscale y 10
+plot	"data-C.txt" using 1:3 with points ps 1 pt 2 title "Cyclic" ,\
+	"" using 1:5 with points ps 1 pt 2 title "Classical"
+#
+unset multiplot

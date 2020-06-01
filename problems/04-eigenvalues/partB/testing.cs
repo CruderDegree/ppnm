@@ -36,5 +36,12 @@ class Testing{
 		v = Jacobi.highestK(A, V, e, k);
 		v.print($"Highest {k} values:");
 		A.print($"Test that {k} rows are cleared");
+
+		restoreUpperTriang(A);
+		V = new matrix(n,n);
+		e = new vector(n);
+		int rots = Jacobi.classic(A, V, e);
+		e.print($"Classical done! rotations: {rots}");
+		A.print($"Test that all rows are cleared");
 	}
 }
