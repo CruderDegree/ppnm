@@ -1,0 +1,17 @@
+set term svg background rgb "white"
+set out "PlotB.svg"
+set title "SRI model for Covid-19 infection in Denmark"
+set xlabel "Days since first infection"
+set ylabel "Infected population"
+set style fill transparent solid 0.25
+set style fill noborder
+plot	"data1.txt" using 1:2 with lines lc "blue" title "Tc = 1" ,\
+	"data1.txt" using 1:($2 - $3):($2 + $3) with filledcurves lc "blue" notitle, \
+	"data2.txt" using 1:2 with lines lc "green" title "Tc = 2" ,\
+	"data2.txt" using 1:($2 - $3):($2 + $3) with filledcurves lc "green" notitle, \
+	"data3.txt" using 1:2 with lines lc "yellow" title "Tc = 3" ,\
+	"data3.txt" using 1:($2 - $3):($2 + $3) with filledcurves lc "yellow" notitle, \
+	"data4.txt" using 1:2 with lines lc "orange" title "Tc = 4" ,\
+	"data4.txt" using 1:($2 - $3):($2 + $3) with filledcurves lc "orange" notitle, \
+	"data5.txt" using 1:2 with lines lc "red" title "Tc = 5" ,\
+	"data5.txt" using 1:($2 - $3):($2 + $3) with filledcurves lc "red" notitle
