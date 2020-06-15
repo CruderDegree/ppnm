@@ -1,0 +1,9 @@
+set term svg background rgb "white"
+set out "PlotA.svg"
+set xrange [0:2*pi]
+set xtics (0, 'π/2' pi/2, 'π' pi,'3π/2' 3*pi/2,'2π' 2*pi)   
+set yrange [-1:1]
+set title "Solving y''=-y with y'(0) = 0, y(0) = 1"
+set key bottom right
+plot 	"data.txt" using 1:2 with points title "Data" ,\
+	cos(x) with lines title "cos(x)"
