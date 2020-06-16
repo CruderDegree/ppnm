@@ -1,0 +1,11 @@
+--- Part A: Search for extremums of the Rosenbrock Valley Function ---
+Starting point:         10         20 
+Found solution:          1          1 
+Starting point:       -123        123 
+Found solution:          1          1 
+Starting point:       -123        123 
+Found solution:          1          1 
+Starting point:       -100          0 
+Found solution:          1          1 
+Starting point:        100       -123 
+Found solution:          1          1 
