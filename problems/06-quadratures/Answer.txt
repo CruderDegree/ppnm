@@ -1,0 +1,9 @@
+--- Part A ---
+int from 0 to 1 of sqrt(x) dx:
+Calculation: 		 Actual:
+0.666666970048681 	 0.666666666666667 
+
+int from 0 to 1 of 4*Sqrt(1-x*x) dx:
+Calculation: 		 Actual:
+3.14159283639132 	 3.14159265358979 
+
