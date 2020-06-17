@@ -1,6 +1,7 @@
 using static System.Console;
 using static System.Math;
 using static MonteCarlo;
+using System.IO;
 using System;
 
 class main{
@@ -34,5 +35,16 @@ class main{
 		(res, err) = plainMC(f, a, b, N);
 		WriteLine($"Result (N = {N}): {res} +- {err}");
 
+		WriteLine("\n ---- Part B ----");
+		WriteLine("See figure PlotB.svg to see that the error is O(1/sqrt(N))");
+		using (StreamWriter sw = new StreamWriter("dataB.txt")){
+			int[] Ns = new int[] {1000, 2500, 5000, 7500, 10000, 
+				15000, 20000, 25000, 50000, 75000, 100000, 125000,
+				150000, 175000, 200000, 250000, 300000, 400000, 500000};
+			foreach(int n in Ns){
+				(res, err) = plainMC(f,a,b,n);
+				sw.WriteLine($"{n} {err}");
+			}
+		}
 	}
 }
