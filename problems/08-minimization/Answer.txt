@@ -1,0 +1,9 @@
+--- Part A ---
+Searching for a minimum of the Rosenbrock Valley function...
+Starting point:         0          0 
+Minimum found (29 steps)         1      0.999 
+Global minimum: (1,1)
+Searching for a minimum of the Himmelblau function...
+Starting point:         0          0 
+Minimum found (9 steps)         3          2 
+Local minimum: (3,2)
