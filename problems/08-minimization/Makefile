@@ -13,4 +13,5 @@ main.exe: main.cs lib.dll
 lib.dll: $(LIBFILES)
 	mcs $^ -target:library -out:$@
 
-clean: *.dll *.txt *.exe
+clean: 
+	rm -f *.dll *.txt *.exe
