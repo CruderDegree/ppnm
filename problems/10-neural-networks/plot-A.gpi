@@ -1,0 +1,9 @@
+set term svg background rgb "white"
+set out "Plot-A.svg"
+set title "Fitting an ANN to sin(x)"
+set xlabel "x"
+set xtics (0, 'π/2' pi/2, 'π' pi,'3π/2' 3*pi/2,'2π' 2*pi)   
+set ylabel "y"
+set xrange [0:2*pi]
+plot 	"data-A.txt" with points title "ANN estimates" ,\
+	sin(x)
