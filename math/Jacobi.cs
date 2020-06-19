@@ -3,7 +3,7 @@ using static System.Console;
 using System;
 
 public class Jacobi{
-	public static int cyclic(matrix A, matrix V, vector e){
+	public static (int, int) cyclic(matrix A, matrix V, vector e){
 		/* Calculates all eigenvalues and vectors of A
 		 * Returns number of sweeps used to calculate these.
 		 *
@@ -16,15 +16,17 @@ public class Jacobi{
 		// Turn V into the identity matrix
 		for(int i = 0; i<n; i++) V[i,i] = 1;	
 		// Convergence criterion
-		bool diagChanged = true;
+		bool diagChanged;
 		// e is a vector containing diagonal elements of A
 		for(int i = 0; i<n; i++) e[i] = A[i, i];
 		// Perform a Jacobi rotation-sweep and check convergence
-		int sweeps = 0;
-		while(diagChanged){
+		int sweeps = 0, rots = 0;
+		do{
 			sweeps++;
+			diagChanged = true;
 			// Loop over upper triang. elements in A
 			for(int p = 0; p < n; p++) for(int q = p + 1; q < n; q++){
+				rots++;
 				double App = e[p]; double Aqq = e[q];
 				double Apq = A[p,q];
 				// Calculate phi
@@ -40,7 +42,7 @@ public class Jacobi{
 				if(newApp != App || newAqq != Aqq){
 					// Update diagonal. Zero A[p,q]
 					e[p] = newApp; e[q] = newAqq;
-					A[p,q] = 0.0;
+					A[p,q] = 0;
 					// i = 0 ... p-1 --> ip, iq
 					for(int i = 0; i < p; i++){
 						double Aip = A[i,p]; double Aiq = A[i,q];
@@ -59,19 +61,15 @@ public class Jacobi{
 						A[p,i] = c*Api - s*Aqi;
 						A[q,i] = s*Api + c*Aqi;
 					}
-
+	
 					// Update V Matrix
-					for(int i = 0; i < n; i++){
-						double Vip = V[i,p]; double Viq = V[i,q];
-						V[i, p] = c*Vip - s*Viq;
-						V[i, q] = c*Viq + s*Vip;
-					}
+					jacobiUpdate(V, p, q, phi);
 				}
 				else diagChanged = false;
 			}
-		} 
+		} while(diagChanged);
 		// Procedure is done, A --> D, V has been calculated
-		return sweeps;
+		return (sweeps, rots);
 	}
 	
 	public static int classic(matrix A, matrix V, vector e){
@@ -157,7 +155,6 @@ public class Jacobi{
 		}while(!converged);
 		return rot;
 	}
-
 	
 	private static int findHighest(matrix A, int row){
 		// Search upper triang. of A for highest element
@@ -294,7 +291,10 @@ public class Jacobi{
 			for(int p = 0; p < n; p++) for(int q = 0; q < n; q++) if(p != q){
 				// Perform a rotation and update U and V
 				givensRot(A, U, p, q);
-				jacobiRot(A, U, V, p, q);
+				//jacobiRot(A, U, V, p, q);
+				double phi = jacobiRotation(A, p, q);
+				jacobiUpdate(U, p, q, phi);
+				jacobiUpdate(V, p, q, phi);
 			}
 			
 			// Check convergence after sweep and update diag vector
@@ -333,40 +333,44 @@ public class Jacobi{
 		}
 	}
 
-	private static void jacobiRot(matrix A, matrix U, matrix V, int p, int q){
-		// Perform a rotation on A': J^T*A'*J 
-		// and update U' and V: U = U'*J, V = VJ
+	public static double jacobiRotation(matrix A, int p, int q){
+		// Make a rotation on A to zero elements Apq, Aqp
+		// and return rotation angle to update other objects
 		double App = A[p,p], Aqq = A[q,q], Apq = A[p,q], Aqp = A[q,p];
 		double phi = 0.5*Atan2(Aqp + Apq, Aqq - App);
 		double c = Cos(phi), s = Sin(phi);
-		// Update U,V and off-diag elements of A
-		for(int i = 0; i < A.size2; i++){
-			// Update U and V
-			double Uip = U[i,p], Uiq = U[i,q];
-			U[i,p] = c*Uip - s*Uiq;
-			U[i,q] = c*Uiq + s*Uip;
+		// Update off-diag elements of A
+		for(int i = 0; i < A.size2; i++) if(i!= p && i!= q){
+			// A --> A' = J^T A J
+			double Api = A[p,i], Aip = A[i,p];
+			double Aqi = A[q,i], Aiq = A[i,q];
 
-			double Vip = V[i,p], Viq = V[i,q];
-			V[i,p] = c*Vip - s*Viq;
-			V[i,q] = c*Viq + s*Vip;
-				
-			if(i!= p && i!= q){
-				// A' --> A = J^T A' J
-				double Api = A[p,i], Aip = A[i,p];
-				double Aqi = A[q,i], Aiq = A[i,q];
-
-				A[p,i] = c*Api - s*Aqi;
-				A[q,i] = c*Aqi + s*Api;
-				A[i,p] = c*Aip - s*Aiq;
-				A[i,q] = c*Aiq + s*Aip;
-			}
+			A[p,i] = c*Api - s*Aqi;
+			A[q,i] = c*Aqi + s*Api;
+			A[i,p] = c*Aip - s*Aiq;
+			A[i,q] = c*Aiq + s*Aip;
 		}
 		// Calc Aqq and App
 		A[p,p] = c*c*App + s*s*Aqq - 2*c*s*Aqp;
 		A[q,q] = c*c*Aqq + s*s*App + 2*c*s*Apq;
 
 		// Zero Apq = Aqp
-		A[p,q] = s*c*(App - Aqq) + (c*c - s*s)*Apq; 
-		A[q,p] = s*c*(App - Aqq) + (c*c - s*s)*Aqp;
+		// Actual calculation
+		//A[p,q] = s*c*(App - Aqq) + (c*c - s*s)*Apq; 
+		//A[q,p] = s*c*(App - Aqq) + (c*c - s*s)*Aqp;
+		// Dirty shortcut
+		A[p,q] = 0; A[q,p] = 0;
+		return phi;
+	}
+	
+	public static void jacobiUpdate(matrix V, int p, int q, double theta){
+		// Calculates V*J, where J is the pq Jacobi matrix with angle theta
+		double c = Cos(theta), s = Sin(theta);
+		// Update V 
+		for(int i = 0; i < V.size2; i++){
+			double Vip = V[i,p], Viq = V[i,q];
+			V[i,p] = c*Vip - s*Viq;
+			V[i,q] = c*Viq + s*Vip;
+		}	
 	}
 }
