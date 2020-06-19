@@ -1,4 +1,5 @@
 # Makefile of part A
+MATHDIR = ../../../math/
 
 all: Answer-A.txt Plot-A.svg
 
@@ -11,7 +12,7 @@ data-A.txt Answer-A.txt: main-A.exe lib-A.dll
 main-A.exe: main-A.cs lib-A.dll
 	mcs $< -reference:lib-A.dll -out:$@
 
-lib-A.dll: ../lib/vector.cs ../lib/matrix.cs ../lib/jacobi.cs ../lib/MatrixMethods.cs
+lib-A.dll: ../lib/vector.cs ../lib/matrix.cs $(MATHDIR)Jacobi.cs $(MATHDIR)MatrixMethods.cs
 	mcs $^ -target:library -out:$@
 
 clean:

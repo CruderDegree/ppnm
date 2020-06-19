@@ -11,3 +11,6 @@ main-C.exe: main-C.cs libC.dll
 
 libC.dll: ../lib/jacobi.cs ../lib/matrix.cs ../lib/MatrixMethods.cs ../lib/vector.cs
 	mcs $^ -target:library -out:$@
+
+clean:
+	rm -f *.dll *.exe *.txt
