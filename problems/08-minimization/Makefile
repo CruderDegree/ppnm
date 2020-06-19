@@ -1,4 +1,5 @@
-LIBFILES = lib/LinEqs.cs lib/matrix.cs lib/vector.cs lib/Minimization.cs
+MATHDIR = ../../math/
+LIBFILES = $(MATHDIR)LinEqs.cs $(MATHDIR)matrix.cs $(MATHDIR)vector.cs $(MATHDIR)Minimization.cs
 
 .PHONY : all clean
 
