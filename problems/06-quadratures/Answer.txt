@@ -1,9 +1,41 @@
 --- Part A ---
-int from 0 to 1 of sqrt(x) dx:
+∫dx √x from 0 to 1:
 Calculation: 		 Actual:
-0.666666970048681 	 0.666666666666667 
+0.666953909054655 	 0.666666666666667 
 
-int from 0 to 1 of 4*Sqrt(1-x*x) dx:
+∫dx 4*√(1-x*x) from 0 to 1:
 Calculation: 		 Actual:
-3.14159283639132 	 3.14159265358979 
+3.14183457802727 	 3.14159265358979 
 
+
+--- Part B---
+Compare number of integrand evaluations 
+with and without CC-variable transformation
+Func 1: ∫dx 1/√(x) from 0 to 1
+No transformation. Calc:1.99996150007805 Exact:2 Evaluations: 8572
+CC transformation. Calc:1.99999201046432 Exact:2 Evaluations: 16
+
+Func 2: ∫dx ln(x)/√(x) from 0 to 1
+No transformation. Calc:-3.99991705899915 Exact:-4 Evaluations: 8604
+CC transformation. Calc:-3.99987385646141 Exact:-4 Evaluations: 96
+
+Func 3: ∫dx 4*√(1 - x*x) from 0 to 1  = PI, 
+with as many significant digits as possible
+For delta = epsilon = 1e-9, we get:
+No transformation. Calc:3.14159265358994 Deviation:-1.4210854715202E-13 	 Evaluations: 9596
+CC transformation. Calc:3.14159265358979 Deviation:1.33226762955019E-15 	 Evaluations: 14016
+o8av-routine.      Calc:3.14159265355351 Deviation:3.62843088907994E-11 	 Evaluations: 88
+
+--- Part C ---
+
+Func 1: ∫dx 1/(1+x*x) from 0 to +inf
+Integrator:	 Calc:1.60058362133694 Exact:1.5707963267949 Evaluations: 8 Error: 0.0158762630708962
+08av-routine:	 Calc:1.51692634018042 Exact:1.5707963267949 Evaluations: 8
+
+Func 2: ∫dx exp(-x*x) from -inf to +inf
+Integrator:	 Calc:1.72894237358566 Exact:1.77245385090552 Evaluations: 24 Error: 0.0258657589895329
+08av-routine:	 Calc:1.78253576453687 Exact:1.77245385090552 Evaluations: 32
+
+Func 3: ∫dx 1/cosh(x) from +inf to -inf
+Integrator:	 Calc:-3.14434608091996 Exact:-3.14159265358979 Evaluations: 24 Error: 0.0370969852338754
+08av-routine:	 Calc:-3.19875987960887 Exact:-3.14159265358979 Evaluations: 32
