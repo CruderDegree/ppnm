@@ -1,0 +1,6 @@
+set term svg background rgb "white"
+set out "PlotC.svg"
+set key bottom
+plot	"data.txt" u 2:3 with lines lc "blue" title "r1 orbit" ,\
+	"" u 4:5 with lines lc "green" title "r2 orbit" ,\
+	"" u 6:7 with lines lc "red" title "r3 orbit"

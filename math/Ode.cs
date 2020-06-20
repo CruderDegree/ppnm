@@ -37,7 +37,7 @@ public class Ode{
 		// --- Fields
 		private Func<double, vector, vector> f;
 		private double a, b; // Start and end points
-		private double h, absAcc, relAcc; // 
+		private double h, absAcc, relAcc; // step size and accuracies 
 		private vector y;
 		private List<vector> ys;
 		private List<double> xs;
@@ -94,9 +94,9 @@ public class Ode{
 				s = 0; for(int i = 0; i<n; i++) s+=yh[i]*yh[i];
 				normy = Sqrt(s);
 				tol = (normy * relAcc + absAcc) * Sqrt(h / (b-a));
-				Write($"x: {x} \n");
-				y.print("y: ");
-				yh.print("yh: ");
+				//Write($"x: {x} \n");
+				//y.print("y: ");
+				//yh.print("yh: ");
 				// Check if step is good enough to continue
 				if(err < tol){
 					k++;

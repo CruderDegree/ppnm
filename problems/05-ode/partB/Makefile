@@ -1,4 +1,6 @@
 #Makefile of Ode part B
+MATHDIR = ../../../math/
+
 .PHONY : all clean
 
 all: PlotB.svg
@@ -24,7 +26,7 @@ data5.txt: mainB.exe
 mainB.exe: mainB.cs lib.dll
 	mcs $< -reference:lib.dll -o:$@
 
-lib.dll: ../lib/Ode.cs ../lib/vector.cs
+lib.dll: $(MATHDIR)Ode.cs $(MATHDIR)vector.cs
 	mcs $^ -target:library -out:$@
 
 clean:

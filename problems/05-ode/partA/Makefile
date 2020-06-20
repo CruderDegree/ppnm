@@ -1,3 +1,5 @@
+MATHDIR = ../../../math/
+
 .PHONY : all clean
 
 all: PlotA.svg
@@ -12,7 +14,7 @@ main.exe: main.cs lib.dll
 	mcs $< -r:lib.dll
 
 # Make math lib file
-lib.dll: ../lib/Ode.cs ../lib/vector.cs
+lib.dll: $(MATHDIR)Ode.cs $(MATHDIR)vector.cs
 	mcs $^ -target:library -out:$@
 
 clean:
