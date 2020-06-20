@@ -3,12 +3,12 @@ LIBFILES = $(MATHDIR)ANN.cs $(MATHDIR)Minimization.cs $(MATHDIR)vector.cs $(MATH
 
 .PHONY : all clean
 
-all: Plot-A.svg
+all: Plot-AB.svg
 
-Plot-A.svg: plot-A.gpi data-A.txt
+Plot-AB.svg: plot-AB.gpi data-AB.txt
 	gnuplot $<
 
-data-A.txt : main.exe
+data-AB.txt : main.exe
 	mono $< > $@
 
 main.exe: main.cs lib.dll

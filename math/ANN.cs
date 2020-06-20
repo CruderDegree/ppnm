@@ -8,12 +8,16 @@ public class ANN{
 	public int n; // Number of hidden neurons
 	public vector p; // Vector containing parameters (a, b, w, a, b, w, ...)
 	public Func<double, double> f; // Activation function of neurons
+	public Func<double, double> dfdx; // Differentiated activation function
+	public Func<double, double> intf; // Integrated activation function
 	
-	public ANN(int n, Func<double,double> f){
+	public ANN(int n, Func<double,double> f, Func<double, double> dfdx, Func<double,double> intf){
 		this.n = n;
 		this.f = f;
+		this.dfdx = dfdx;
+		this.intf = intf;
 		this.p = new vector(3*n);
-		for(int i = 0; i < p.size; i++) p[i] = 1;
+		for(int i = 0; i < p.size; i++) p[i] = 4; // Set all params to 4
 	}
 
 	public double evaluate(double x){
@@ -24,6 +28,30 @@ public class ANN{
 			b = p[3*i + 1];
 			w = p[3*i + 2];
 			res += w * f((x-a)/b);
+		}
+		return res;
+	}
+
+	public double evaluateDiff(double x){
+		double res = 0;
+		double a, b, w;
+		for(int i = 0; i < n; i++){
+			a = p[3*i];
+			b = p[3*i + 1];
+			w = p[3*i + 2];
+			res += w/b * dfdx((x-a)/b);
+		}
+		return res;
+	}
+
+	public double evaluateInt(double x){
+		double res = 0;
+		double a, b, w;
+		for(int i = 0; i < n; i++){
+			a = p[3*i];
+			b = p[3*i + 1];
+			w = p[3*i + 2];
+			res += w * b * intf((x-a)/b);
 		}
 		return res;
 	}
@@ -39,7 +67,7 @@ public class ANN{
 			return sum;
 		};
 
-		(vector bestP, int steps) = Minimization.qNewton(dp, p, 1.0/1000);
+		(vector bestP, int steps) = Minimization.qNewton(dp, p, 1.0/100);
 		p = bestP;
 	}
 }
