@@ -7,3 +7,16 @@ Searching for a minimum of the Himmelblau function...
 Starting point:         0          0 
 Minimum found (9 steps)         3          2 
 Local minimum: (3,2)
+
+
+--- Part B ---
+Fitting Higgs data to Breit-Wigner function, done in 11 steps.
+Found parameters:
+Mass: 125.970150655013 
+Gamma: 2.08159373171951 
+A: 9.84415425610177
+
+
+--- Part C ---
+Find minimum Rosenbrock Valley function...
+Minimum found (82 steps):         1          1 

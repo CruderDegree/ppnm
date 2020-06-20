@@ -15,4 +15,4 @@ lib.dll: $(LIBFILES)
 	mcs $^ -target:library -out:$@
 
 clean: 
-	rm -f *.dll *.txt *.exe
+	rm -f *.dll Answer.txt *.exe
