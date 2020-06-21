@@ -1,3 +1,8 @@
+Testing to find roots of f(x,y) = (x*x - 9, 81 - y*y)
+Found solution:          3          9 
+Found second solution:         -3         -9 
+Found third solution:         -3          9 
+Found fourth solution:          3         -9 
 --- Part A: Search for extremums of the Rosenbrock Valley Function ---
 Starting point:         10         20 
 Found solution:          1          1 
@@ -9,3 +14,8 @@ Starting point:       -100          0
 Found solution:          1          1 
 Starting point:        100       -123 
 Found solution:          1          1 
+
+
+--- Part B ---
+For rmax = 8 we get an energy estimate of -0.500020775515096,
+compared to the analytical result of -1/2

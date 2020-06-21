@@ -1,0 +1,9 @@
+set term svg background rgb "white"
+set out "PlotB.svg"
+set title "Bound state of hydrogen"
+set xlabel "r"
+set ylabel "y"
+set key top right
+set key box
+plot 	"data.txt" w points pt 1 ps 1 title "Numerical data" ,\
+	x * exp(-x) w lines title "Analytical function"
