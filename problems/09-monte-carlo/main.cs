@@ -29,6 +29,7 @@ class main{
 		WriteLine("");
 		WriteLine("Next, we test it on this beast:");
 		WriteLine("∫_0^π dx/π ∫_0^π dy/π ∫_0^π dz/π [1-cos(x)cos(y)cos(z)]^-1 = Γ(1/4)^4/(4π^3) ≈ 1.39320392968567");
+		N = 1000000;
 		a = new vector(0.0, 0.0, 0.0);
 		b = new vector(PI, PI, PI);
 		f = (x) => 1/(1-Cos(x[0])*Cos(x[1])*Cos(x[2]))/PI/PI/PI;
@@ -46,5 +47,14 @@ class main{
 				sw.WriteLine($"{n} {err}");
 			}
 		}
+
+		WriteLine("\n--- Part C ---");
+		WriteLine("∫_0^π dx/π ∫_0^π dy/π ∫_0^π dz/π [1-cos(x)cos(y)cos(z)]^-1 = Γ(1/4)^4/(4π^3) ≈ 1.39320392968567");
+		N = 500000;
+		a = new vector(0.0, 0.0, 0.0);
+		b = new vector(PI, PI, PI);
+		f = (x) => 1/(1-Cos(x[0])*Cos(x[1])*Cos(x[2]))/PI/PI/PI;
+		(res, err) = recStratifMC(f, a, b, N);
+		WriteLine($"Result (N = {N}): {res} +- {err}");
 	}
 }

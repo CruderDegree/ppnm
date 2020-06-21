@@ -4,4 +4,4 @@ set xlabel "N"
 set ylabel "Error"
 set yrange [0:0.015]
 plot "dataB.txt" with points title "data" ,\
-	2/sqrt(x) with lines title "2/sqrt(N)"
+	1/sqrt(x) with lines title "1/sqrt(N)"
